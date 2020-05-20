@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const path = require('path');
 const User = require('../../model/User');
-const signTokens = require('../../utils/auth/signTokens');
 const { inputValidation } = require('../../utils/validation');
+const signTokens = require('../../utils/auth/signTokens');
+// const jwt = require('jsonwebtoken');
+// const path = require('path');
 
 /* Middleware */
 router.use(express.json());

@@ -1,3 +1,5 @@
+console.log('i am auth script :P');
+
 const formSwitchButtons = document.getElementsByClassName('form-switch');
 const authForm = document.getElementById('login-form');
 const registerForm = document.getElementById('register-form');
@@ -45,12 +47,28 @@ async function sendCredentials(url = '', data = {}, method = 'POST') {
             body: JSON.stringify(data)
         })
         .then(response => {
-            // Convert readableStreame res.body into text string
-            return response.text()
+            // Convert readableStream res.body into text string
+            return response.text();
         })
         .then(HTMLstring => {
             // Insert response HTML into document
             document.body.innerHTML = HTMLstring;
+            // Manually parse incoming scripts :(
+            let scripts = document.querySelectorAll('script');
+            for ( let i = 0; i < scripts.length; i++ ) {
+                if ( scripts[i].innerText ) {
+                    eval(scripts[i].innerText);
+                } else {
+                    fetch(scripts[i].src)
+                    .then(src => {
+                        return src.text();
+                    })
+                    .then(src => {
+                        eval(src);
+                    });
+                };
+                scripts[i].parentNode.removeChild(scripts[i]);
+            };
         });
     } catch (err) {
         console.log(err);

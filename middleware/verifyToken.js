@@ -12,8 +12,7 @@ function verifyToken(req, res, next) {
     const refreshToken = req.cookies.refreshToken;
 
     /* There are no tokens */
-    if ( accessToken === undefined ) return res.sendFile(path.join(__dirname, '/../public/auth/auth.html'));
-
+    if ( accessToken === undefined ) return res.render('auth', { data: {} });
 
     /* There are tokens */
     const accessStatus = jwt.verify(accessToken, process.env.TOKEN_SECRET, (error, payload) => {
@@ -28,7 +27,7 @@ function verifyToken(req, res, next) {
             return next();
         // Token has been tampered
         case accessStatus === 'JsonWebTokenError':
-            res.status(401).render('auth', { data: { error: 'Invalid token!' } })
+            res.status(401).render('auth', { data: { error: 'Invalid token!' } });
             return;
     };
 
