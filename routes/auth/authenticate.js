@@ -4,8 +4,6 @@ const bcrypt = require('bcrypt');
 const User = require('../../model/User');
 const { inputValidation } = require('../../utils/validation');
 const signTokens = require('../../utils/auth/signTokens');
-// const jwt = require('jsonwebtoken');
-// const path = require('path');
 
 /* Middleware */
 router.use(express.json());

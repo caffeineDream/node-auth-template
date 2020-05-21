@@ -1,5 +1,3 @@
-console.log('i am auth script :P');
-
 const formSwitchButtons = document.getElementsByClassName('form-switch');
 const authForm = document.getElementById('login-form');
 const registerForm = document.getElementById('register-form');

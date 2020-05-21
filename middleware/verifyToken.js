@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const path = require('path');
 const signTokens = require('../utils/auth/signTokens');
 
 function verifyToken(req, res, next) {
