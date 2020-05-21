@@ -7,7 +7,7 @@ Authorization:
  - bcrypt
  - cloud MongoDB for user storage
 
- ![authentication](readme_resources\authenticate.jpeg?raw=true "Auth scheme")
+ ![authentication](readme_resources\authenticate.jpeg?raw=true)
 
 Middleware: 
- ![verifyTokens](readme_resources\verifyTokens.jpeg?raw=true "Verifying tokens scheme")
+ ![verifyTokens](readme_resources\verifyTokens.jpeg?raw=true)
