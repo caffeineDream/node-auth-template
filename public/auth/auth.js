@@ -56,28 +56,7 @@ async function sendCredentials(url = '', data = {}, method = 'POST') {
             body: JSON.stringify(data)
         })
         .then(response => {
-            // Convert readableStream res.body into text string
-            return response.text();
-        })
-        .then(HTMLstring => {
-            // Insert response HTML into document
-            document.body.innerHTML = HTMLstring;
-            // Manually parse incoming scripts :(
-            let scripts = document.querySelectorAll('script');
-            for ( let i = 0; i < scripts.length; i++ ) {
-                if ( scripts[i].innerText ) {
-                    eval(scripts[i].innerText);
-                } else {
-                    fetch(scripts[i].src)
-                    .then(src => {
-                        return src.text();
-                    })
-                    .then(src => {
-                        eval(src);
-                    });
-                };
-                scripts[i].parentNode.removeChild(scripts[i]);
-            };
+            window.location.href = response.url;
         });
     } catch (err) {
         console.log(err);
