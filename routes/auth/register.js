@@ -5,7 +5,7 @@ const User = require('../../model/User');
 const { inputValidation } = require('../../utils/validation');
 
 /* Middleware */
-router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
 
 /* Register new user */
 router.post('/register', async (req, res) => {

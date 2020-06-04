@@ -21,16 +21,27 @@ for (var i = 0; i < formSwitchButtons.length; i++) {
     formSwitchButtons[i].addEventListener('click', switchForms, false);
 };
 
-/* Make login request with fetch, then save jwt from response header to HTML5 Web Storage*/
+/* Make login or register request with fetch */
 
 const usernameInput = document.getElementById('login-username-input');
 const passwordInput = document.getElementById('login-password-input');
+const registerUsernameInput = document.getElementById('register-username-input');
+const registerPasswordInput = document.getElementById('register-password-input');
 
 authForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const loginData = {"username": usernameInput.value, "password": passwordInput.value};
     const authUrl = '/auth';
     sendCredentials(authUrl, loginData);
+    usernameInput.value = '';
+    passwordInput.value = '';
+});
+
+registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const registerData = {"username": registerUsernameInput.value, "password": registerPasswordInput.value};
+    const registerUrl = '/register';
+    sendCredentials(registerUrl, registerData);
     usernameInput.value = '';
     passwordInput.value = '';
 });
@@ -72,3 +83,6 @@ async function sendCredentials(url = '', data = {}, method = 'POST') {
         console.log(err);
     };
 };
+
+
+

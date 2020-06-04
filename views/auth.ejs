@@ -30,14 +30,14 @@
           <% } %>    
     </form>
     <!-- Register form -->
-    <form id="register-form" class="display-none" method="POST" action="/register">
+    <form id="register-form" class="display-none">
       <div class="user-box">
         <label for="username">Username, alphanumerical 4-16 length</label>
-        <input type="text" name="username" required pattern="^(?![0-9]{16})[0-9a-zA-Z]{4,16}$" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <input id="register-username-input" type="text" name="username" required pattern="^(?![0-9]{16})[0-9a-zA-Z]{4,16}$" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
       </div>
       <div class="user-box">
-        <label for="password">Password, 4 characters minimum</label>
-        <input type="password" name="password" required pattern="^([1-zA-Z0-1@.\s]{4,})$">
+        <label for="password">Password,  alphanumerical 4 characters min</label>
+        <input id="register-password-input" type="password" name="password" required pattern="^([1-zA-Z0-1@.\s]{4,})$">
       </div>
       <div class='button-container'>
         <button type="submit">Register</button>
