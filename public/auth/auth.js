@@ -30,7 +30,7 @@ const registerPasswordInput = document.getElementById('register-password-input')
 
 authForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const loginData = {"username": usernameInput.value, "password": passwordInput.value};
+    const loginData = { username: usernameInput.value, password: passwordInput.value };
     const authUrl = '/auth';
     sendCredentials(authUrl, loginData);
     usernameInput.value = '';
@@ -41,27 +41,60 @@ registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const registerData = {"username": registerUsernameInput.value, "password": registerPasswordInput.value};
     const registerUrl = '/register';
-    sendCredentials(registerUrl, registerData);
-    usernameInput.value = '';
-    passwordInput.value = '';
+    registerUser(registerUrl, registerData);
+    registerUsernameInput.value = '';
+    registerPasswordInput.value = '';
 });
 
-async function sendCredentials(url = '', data = {}, method = 'POST') {
+async function sendCredentials(url = '', data = {}) {
     try {
         return await fetch(url, {
-            method: method,
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
         .then(response => {
-            window.location.href = response.url;
+            if (response.redirected) window.location.href = response.url;
+            return response.json();
+        })
+        .then(data => {
+            appendFeedback(data, 'login-form');
         });
     } catch (err) {
         console.log(err);
     };
 };
 
+async function registerUser(url = '', data = {}) {
+    try {
+        return await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            appendFeedback(data, 'register-form');
+        });
+    } catch (err) {
+        console.log(err);
+    };
+};
 
-
+function appendFeedback(data, target) {
+    const feedbackLocation = document.getElementById(target)
+    feedbackElement = document.createElement('p');
+    feedbackElement.innerText = data.feedback;
+    if (data.error) {
+        feedbackElement.classList.add('error-feedback');
+    } else {
+        feedbackElement.classList.add('successful-feedback');
+    };
+    feedbackLocation.append(feedbackElement);
+};

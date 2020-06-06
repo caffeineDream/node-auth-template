@@ -22,12 +22,6 @@
         <button type="submit">Log in</button>
         <button type="button" class="form-switch">Register</button>
       </div>
-      <% if (data.error) { %>
-          <p class="error-feedback"> <%= data.error %> </p>
-          <% } %>
-      <% if (data.feedback) { %>
-          <p class="successful-feedback"> <%= data.feedback %> </p>
-          <% } %>    
     </form>
     <!-- Register form -->
     <form id="register-form" class="display-none">
@@ -43,6 +37,9 @@
         <button type="submit">Register</button>
         <button type="button" class="form-switch">Log in</button>
       </div>
+        <!-- Feedback template -->
+        <!-- <p class="error-feedback"> <%= data.error %> </p>
+        <p class="successful-feedback"> <%= data.feedback %> </p> -->
     </form>
   </div>
   <script src="auth.js"></script>
