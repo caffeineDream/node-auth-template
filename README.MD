@@ -6,3 +6,5 @@ Authorization:
  - JWT
  - bcrypt
  - cloud MongoDB for user storage
+
+![App auth screen](https://i.ibb.co/wgSgLwQ/screem.png "Auth screen")
